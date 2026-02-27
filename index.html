@@ -2,46 +2,83 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Neko Candy Store</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="machine">
-
-    <div class="top-cat">🐱</div>
-
-    <h1>NEKO CANDY STORE</h1>
-
-    <div class="screen">
-        <div class="status">
-            <p>AFD Estado: <span id="state">q0</span></p>
-            <p>Saldo: R$ <span id="balance">0</span></p>
+<main class="vending-shell" id="machine">
+    <header class="marquee">
+        <img src="assets/cat-top.png" alt="Gatinho no topo" class="cat-top-image">
+        <div class="marquee-sign">
+            <h1>NEKO CANDY STORE</h1>
+            <p>Máquina de Doces • Projeto Teoria da Computação</p>
         </div>
-        <div id="message">Insira dinheiro 💰</div>
-    </div>
+    </header>
 
-    <div class="money-section">
-        <h3>Inserir Notas</h3>
-        <button onclick="insertMoney(1)">🐾 R$1</button>
-        <button onclick="insertMoney(2)">🐾 R$2</button>
-        <button onclick="insertMoney(5)">🐾 R$5</button>
-    </div>
+    <section class="machine-body">
+        <aside class="left-cabinet panel-frame">
+            <h2>Tama</h2>
+            <div class="shelf-grid">
+                <div class="shelf-item">🍬<span>A</span></div>
+                <div class="shelf-item">🍭<span>B</span></div>
+                <div class="shelf-item">🍫<span>C</span></div>
+                <div class="shelf-item">🧁<span>A</span></div>
+                <div class="shelf-item">🍪<span>B</span></div>
+                <div class="shelf-item">🍩<span>C</span></div>
+            </div>
+            <div class="pickup-box">
+                <p>PEGUE SEU DOCE</p>
+                <div id="candyDrop" class="candy-drop">🐾</div>
+            </div>
+        </aside>
 
-    <div class="candy-section">
-        <h3>Escolha seu Doce</h3>
-        <button onclick="buyCandy(6,'A')">🍬 Doce A - R$6</button>
-        <button onclick="buyCandy(7,'B')">🍭 Doce B - R$7</button>
-        <button onclick="buyCandy(8,'C')">🍫 Doce C - R$8</button>
-    </div>
+        <section class="right-console panel-frame">
+            <div class="candy-cards">
+                <button class="candy-card" onclick="buyCandy(6,'A')">
+                    <span class="paw">🐾</span>
+                    <strong>Doce A</strong>
+                    <small>R$6,00</small>
+                </button>
+                <button class="candy-card" onclick="buyCandy(7,'B')">
+                    <span class="paw">🐾</span>
+                    <strong>Doce B</strong>
+                    <small>R$7,00</small>
+                </button>
+                <button class="candy-card" onclick="buyCandy(8,'C')">
+                    <span class="paw">🐾</span>
+                    <strong>Doce C</strong>
+                    <small>R$8,00</small>
+                </button>
+            </div>
 
-    <div class="drop-zone">
-        <div id="candyDrop" class="candy"></div>
-    </div>
+            <div class="status-row">
+                <div class="afd-panel">
+                    <h3>AFD STATUS</h3>
+                    <div id="afdStates" class="afd-states"></div>
+                    <p class="state-line">Estado atual: <span id="state">q0</span></p>
+                </div>
 
-    <button class="reset" onclick="resetMachine()">🔄 Resetar</button>
+                <div class="money-panel">
+                    <h3>Inserir notas</h3>
+                    <div class="money-buttons">
+                        <button onclick="insertMoney(1)">R$1</button>
+                        <button onclick="insertMoney(2)">R$2</button>
+                        <button onclick="insertMoney(5)">R$5</button>
+                    </div>
+                    <p class="balance">Saldo: <span id="balance">R$0,00</span></p>
+                    <p class="missing" id="missing">Falta: R$6,00 / R$7,00 / R$8,00</p>
+                </div>
+            </div>
 
-</div>
+            <div class="message-row">
+                <p id="message">Insira dinheiro para começar 💰</p>
+                <button class="reset" onclick="resetMachine()">Resetar</button>
+            </div>
+        </section>
+    </section>
+</main>
 
 <script src="script.js"></script>
 </body>
