@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Neko Candy Store</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="machine">
+
+    <div class="top-cat">🐱</div>
+
+    <h1>NEKO CANDY STORE</h1>
+
+    <div class="screen">
+        <div class="status">
+            <p>AFD Estado: <span id="state">q0</span></p>
+            <p>Saldo: R$ <span id="balance">0</span></p>
+        </div>
+        <div id="message">Insira dinheiro 💰</div>
+    </div>
+
+    <div class="money-section">
+        <h3>Inserir Notas</h3>
+        <button onclick="insertMoney(1)">🐾 R$1</button>
+        <button onclick="insertMoney(2)">🐾 R$2</button>
+        <button onclick="insertMoney(5)">🐾 R$5</button>
+    </div>
+
+    <div class="candy-section">
+        <h3>Escolha seu Doce</h3>
+        <button onclick="buyCandy(6,'A')">🍬 Doce A - R$6</button>
+        <button onclick="buyCandy(7,'B')">🍭 Doce B - R$7</button>
+        <button onclick="buyCandy(8,'C')">🍫 Doce C - R$8</button>
+    </div>
+
+    <div class="drop-zone">
+        <div id="candyDrop" class="candy"></div>
+    </div>
+
+    <button class="reset" onclick="resetMachine()">🔄 Resetar</button>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
