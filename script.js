@@ -1,64 +1,98 @@
+const candyPrices = { A: 6, B: 7, C: 8 };
+const candyEmoji = { A: '🍬', B: '🍭', C: '🍫' };
+
 let balance = 0;
-let state = "q0";
+let state = 'q0';
+
+function renderAfd() {
+    const afdContainer = document.getElementById('afdStates');
+    afdContainer.innerHTML = '';
+
+    for (let i = 0; i <= 8; i += 1) {
+        const node = document.createElement('span');
+        node.className = 'afd-node';
+        node.textContent = `q${i}`;
+
+        if (state === `q${i}` || (state === 'q8+' && i === 8)) {
+            node.classList.add('active');
+        }
+
+        afdContainer.appendChild(node);
+    }
+}
+
+function formatMoney(value) {
+    return `R$${value},00`;
+}
 
 function updateDisplay() {
-    document.getElementById("balance").innerText = balance;
-    document.getElementById("state").innerText = state;
+    document.getElementById('balance').innerText = formatMoney(balance);
+    document.getElementById('state').innerText = state;
+
+    const missingA = Math.max(candyPrices.A - balance, 0);
+    const missingB = Math.max(candyPrices.B - balance, 0);
+    const missingC = Math.max(candyPrices.C - balance, 0);
+
+    document.getElementById('missing').innerText =
+        `Falta: ${formatMoney(missingA)} / ${formatMoney(missingB)} / ${formatMoney(missingC)}`;
+
+    renderAfd();
+}
+
+function setMessage(text) {
+    document.getElementById('message').innerText = text;
 }
 
 function insertMoney(value) {
     balance += value;
+    state = balance >= 8 ? 'q8+' : `q${balance}`;
 
-    if (balance >= 8) {
-        state = "q8";
-    } else {
-        state = "q" + balance;
-    }
-
-    document.getElementById("message").innerText = "Dinheiro inserido 💰";
+    setMessage(`Você inseriu ${formatMoney(value)} 💰`);
     updateDisplay();
+}
+
+function animateCandy(type) {
+    const candyDrop = document.getElementById('candyDrop');
+    candyDrop.innerText = candyEmoji[type];
+    candyDrop.classList.remove('drop-animation');
+    void candyDrop.offsetWidth;
+    candyDrop.classList.add('drop-animation');
+}
+
+function shakeMachine() {
+    const machine = document.getElementById('machine');
+    machine.classList.remove('shake');
+    void machine.offsetWidth;
+    machine.classList.add('shake');
 }
 
 function buyCandy(price, type) {
-
     if (balance < price) {
-        document.getElementById("message").innerText = "Saldo insuficiente ❌";
+        setMessage(`Saldo insuficiente para Doce ${type} ❌`);
+        shakeMachine();
         return;
     }
 
-    let change = balance - price;
-    let candyEmoji = "";
+    const change = balance - price;
+    animateCandy(type);
 
-    if (type === "A") candyEmoji = "🍬";
-    if (type === "B") candyEmoji = "🍭";
-    if (type === "C") candyEmoji = "🍫";
-
-    animateCandy(candyEmoji);
-
-    if (change === 0) {
-        document.getElementById("message").innerText =
-            "Doce " + type + " liberado SEM troco 🎉";
+    if (change > 0) {
+        setMessage(`Doce ${type} liberado! Troco: ${formatMoney(change)} 🎉`);
     } else {
-        document.getElementById("message").innerText =
-            "Doce " + type + " liberado! Troco: R$" + change + " 💵";
+        setMessage(`Doce ${type} liberado sem troco! 🎉`);
     }
 
-    state = "FINAL";
+    balance = 0;
+    state = 'q0';
     updateDisplay();
-}
-
-function animateCandy(emoji) {
-    let candy = document.getElementById("candyDrop");
-    candy.innerHTML = emoji;
-    candy.classList.remove("drop-animation");
-    void candy.offsetWidth;
-    candy.classList.add("drop-animation");
 }
 
 function resetMachine() {
     balance = 0;
-    state = "q0";
-    document.getElementById("message").innerText = "Máquina reiniciada 🔄";
-    document.getElementById("candyDrop").innerHTML = "";
+    state = 'q0';
+    document.getElementById('candyDrop').innerText = '🐾';
+    setMessage('Máquina reiniciada. Insira dinheiro para começar 💰');
     updateDisplay();
 }
+
+updateDisplay();
