@@ -1,5 +1,5 @@
 const candyPrices = { A: 6, B: 7, C: 8 };
-const candyEmoji = { A: '🍬', B: '🍭', C: '🍫' };
+const candyEmoji = { MoranGlow: '🍓', ChocoMiau: '🍫', MelCookie: '🍪' };
 
 let balance = 0;
 let state = 'q0';
@@ -8,12 +8,12 @@ function renderAfd() {
     const afdContainer = document.getElementById('afdStates');
     afdContainer.innerHTML = '';
 
-    for (let i = 0; i <= 8; i += 1) {
+    for (let i = 0; i <= 10; i += 1) {
         const node = document.createElement('span');
         node.className = 'afd-node';
         node.textContent = `q${i}`;
 
-        if (state === `q${i}` || (state === 'q8+' && i === 8)) {
+        if (state === `q${i}` || (state === 'q10+' && i === 10)) {
             node.classList.add('active');
         }
 
@@ -44,7 +44,18 @@ function setMessage(text) {
 }
 
 function insertMoney(value) {
+
+    if (balance + value > 10) {
+        document.getElementById("errorSound").play();
+        setMessage("⚠️ Limite máximo é R$10,00!");
+        shakeMachine();
+        return;
+    }
+
     balance += value;
+
+    document.getElementById("coinSound").play();
+
     state = balance >= 8 ? 'q8+' : `q${balance}`;
 
     setMessage(`Você inseriu ${formatMoney(value)} 💰`);
@@ -67,14 +78,25 @@ function shakeMachine() {
 }
 
 function buyCandy(price, type) {
+
     if (balance < price) {
+        document.getElementById("errorSound").play();
         setMessage(`Saldo insuficiente para Doce ${type} ❌`);
         shakeMachine();
         return;
     }
 
     const change = balance - price;
+
     animateCandy(type);
+    document.getElementById("dispenseSound").play();
+
+    const machine = document.getElementById("machine");
+    machine.classList.add("led-win");
+
+    setTimeout(() => {
+        machine.classList.remove("led-win");
+    }, 1200);
 
     if (change > 0) {
         setMessage(`Doce ${type} liberado! Troco: ${formatMoney(change)} 🎉`);

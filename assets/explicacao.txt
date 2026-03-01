@@ -1,0 +1,128 @@
+AFD da Máquina de Doces - Explicação
+====================================
+
+1) Objetivo do AFD
+------------------
+O AFD (Autômato Finito Determinístico) modela o saldo inserido na máquina.
+Cada estado representa quanto dinheiro o usuário acumulou.
+
+2) Estados
+----------
+- q0  = saldo R$0,00
+- q1  = saldo R$1,00
+- q2  = saldo R$2,00
+- q3  = saldo R$3,00
+- q4  = saldo R$4,00
+- q5  = saldo R$5,00
+- q6  = saldo R$6,00
+- q7  = saldo R$7,00
+- q8  = saldo R$8,00
+- q9  = saldo R$9,00
+- q10 = saldo R$10,00
+
+Estado inicial: q0.
+
+3) Alfabeto de entrada
+----------------------
+As entradas possíveis no sistema de notas são:
+- 1 (nota de R$1)
+- 2 (nota de R$2)
+- 5 (nota de R$5)
+
+4) Função de transição (ideia)
+------------------------------
+Quando uma nota é inserida:
+- o estado avança pela soma do valor inserido;
+- exemplo: em q3, inserindo 2, vai para q5;
+- exemplo: em q5, inserindo 5, vai para q10.
+
+Regra de limite:
+- se a soma ultrapassar R$10,00, a transição não ocorre;
+- a máquina rejeita a inserção e permanece no estado atual.
+
+5) Estados de aceitação para compra
+-----------------------------------
+- Doce A (R$6): pode comprar em q6, q7, q8, q9, q10
+- Doce B (R$7): pode comprar em q7, q8, q9, q10
+- Doce C (R$8): pode comprar em q8, q9, q10
+
+Ao comprar:
+- a máquina dispensa o doce;
+- calcula troco (saldo - preço), quando houver;
+- volta para q0.
+
+6) Determinismo
+---------------
+É determinístico porque, para cada estado e entrada válida (1, 2 ou 5),
+existe apenas uma transição possível.
+
+Exemplo:
+- estado q4 com entrada 2 -> sempre q6.
+Não há ambiguidade.
+
+7) Exemplo de execução
+----------------------
+Fluxo 1:
+- q0 --(5)--> q5
+- q5 --(2)--> q7
+- q7 compra Doce B (R$7)
+- retorna para q0
+
+Fluxo 2:
+- q0 --(5)--> q5
+- q5 --(5)--> q10
+- q10 tenta inserir 1 -> bloqueado (ultrapassa limite)
+- q10 compra Doce C (R$8), troco R$2
+- retorna para q0
+
+Resumo:
+O AFD garante um comportamento previsível: controla saldo, valida limite
+máximo de R$10,00, habilita compra conforme o preço e retorna ao estado
+inicial após cada venda.
+
+
+MÁQUINA DE DOCES - EXPLICAÇÃO DO AFD (AUTÔMATO FINITO DETERMINÍSTICO)
+
+1)  O que é um AFD? Um Autômato Finito Determinístico (AFD) é um modelo
+    matemático usado para representar sistemas que possuem estados e
+    transições bem definidas.
+
+Ele é composto por: - Conjunto de estados (Q) - Alfabeto (Σ) - Função de
+transição (δ) - Estado inicial (q0) - Estados finais (F)
+
+2)  Como o AFD funciona na Máquina de Doces
+
+Estados: q0 -> saldo R$0 q1 -> saldo R$1 q2 -> saldo R$2 … q10 -> saldo
+R$10
+
+Estado inicial: q0
+
+Alfabeto (entradas possíveis): {1, 2, 5} (valores das notas inseridas)
+
+Função de transição: δ(qx, valor) = q(x + valor), se x + valor ≤ 10 Se
+x + valor > 10, a transição não ocorre (bloqueada pelo sistema)
+
+Estados de aceitação: Quando o saldo é suficiente para comprar um
+doce: - R$6 para Moranglow - R$7 para ChocoMiau - R$8 para Bala Mística
+
+Quando o valor é suficiente, o sistema permite a transição para o estado
+de liberação do doce e depois retorna para q0.
+
+3)  Limite máximo
+
+O sistema foi configurado para permitir no máximo R$10. Se o usuário
+tentar ultrapassar esse valor, a máquina: - Bloqueia a inserção - Toca
+som de erro - Mostra mensagem de aviso
+
+4)  Reset
+
+Após a compra: - O saldo volta para 0 - O estado retorna para q0 - O AFD
+reinicia o ciclo
+
+Conclusão
+
+A máquina funciona como um AFD porque: - Possui estados finitos - Cada
+entrada leva a um único estado determinístico - Sempre começa em q0 -
+Retorna ao estado inicial após a operação
+
+Isso caracteriza um Autômato Finito Determinístico clássico.

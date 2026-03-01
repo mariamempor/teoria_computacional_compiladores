@@ -21,12 +21,9 @@
         <aside class="left-cabinet panel-frame">
             <h2>Tama</h2>
             <div class="shelf-grid">
-                <div class="shelf-item">🍬<span>A</span></div>
-                <div class="shelf-item">🍭<span>B</span></div>
-                <div class="shelf-item">🍫<span>C</span></div>
-                <div class="shelf-item">🧁<span>A</span></div>
-                <div class="shelf-item">🍪<span>B</span></div>
-                <div class="shelf-item">🍩<span>C</span></div>
+                <div class="shelf-item">🍓<span>MoranGlow</span></div>
+                <div class="shelf-item">🍫<span>ChocoMiau</span></div>
+                <div class="shelf-item">🍪<span>MelCookie</span></div>
             </div>
             <div class="pickup-box">
                 <p>PEGUE SEU DOCE</p>
@@ -36,19 +33,19 @@
 
         <section class="right-console panel-frame">
             <div class="candy-cards">
-                <button class="candy-card" onclick="buyCandy(6,'A')">
+                <button class="candy-card" onclick="buyCandy(6,'MoranGlow')">
                     <span class="paw">🐾</span>
-                    <strong>Doce A</strong>
+                    <strong>Doce A- MoranGlow</strong>
                     <small>R$6,00</small>
                 </button>
-                <button class="candy-card" onclick="buyCandy(7,'B')">
+                <button class="candy-card" onclick="buyCandy(7,'ChocoMiau')">
                     <span class="paw">🐾</span>
-                    <strong>Doce B</strong>
+                    <strong>Doce B- ChocoMiau</strong>
                     <small>R$7,00</small>
                 </button>
-                <button class="candy-card" onclick="buyCandy(8,'C')">
+                <button class="candy-card" onclick="buyCandy(8,'MelCookie')">
                     <span class="paw">🐾</span>
-                    <strong>Doce C</strong>
+                    <strong>Doce C- MelCookie</strong>
                     <small>R$8,00</small>
                 </button>
             </div>
@@ -79,6 +76,10 @@
         </section>
     </section>
 </main>
+
+<audio id="coinSound" src="assets/coin.mp3"></audio>
+<audio id="dispenseSound" src="assets/dispense.mp3"></audio>
+<audio id="errorSound" src="assets/error.mp3"></audio>
 
 <script src="script.js"></script>
 </body>
