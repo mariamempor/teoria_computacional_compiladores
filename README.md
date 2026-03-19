@@ -88,41 +88,28 @@ Após a compra:
 
 ---
 
-## 🚀 Como Executar
-
-```bash
-- git clone https://github.com/mariamempor/teoria_computacional_compiladores.git
-- cd teoria_computacional_compiladores
-- git checkout feature-maquina-doces
-- index.html
-- botão direito do mouse: "open with live server"
-
----
-
 ## 🕹️ Como Usar
 
 ### 💰 Inserir dinheiro
-Clique nos botões:
-- R$1
-- R$2
-- R$5
-
----
+Clique nos botões de inserção:
+* **R$1**
+* **R$2**
+* **R$5**
 
 ### 🍬 Escolher doce
-- Os botões são ativados automaticamente quando o saldo é suficiente
-- Cada botão representa um doce disponível
-
----
+* Os botões são **ativados automaticamente** quando o saldo é suficiente.
+* Cada botão representa um doce disponível.
 
 ### 🎁 Receber produto
-- O doce é liberado na área de saída
-- O troco (se houver) é exibido
-- Sons e animações são executados automaticamente
+* O doce é liberado na área de saída.
+* O **troco** (se houver) é exibido.
+* Sons e animações são executados automaticamente.
 
 ---
 
-## Estrutura do Projeto
+## 📁 Estrutura do Projeto
+
+```text
 teoria_computacional_compiladores/
 ├── index.html
 ├── style.css
