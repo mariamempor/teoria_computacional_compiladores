@@ -7,8 +7,8 @@
 
 ---
 
-## Integrantes
-👥 Integrantes
+## 👥 Integrantes
+
 Breno Henrique Ruiz dos Santos — 823131791
 
 Maria Eduarda Medeiro Porto — 824144948
