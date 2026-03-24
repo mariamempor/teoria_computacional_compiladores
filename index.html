@@ -7,112 +7,72 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main class="app-shell">
-    <section id="menuView" class="menu-shell panel-frame">
-        <div class="menu-title-wrap">
-            <h1>Escolha o Caso</h1>
-    <section class="menu-shell panel-frame">
-        <div class="menu-title-wrap">
-          <h1>Escolha o Caso</h1>
-            <p>Selecione qual cenário você quer executar</p>
-        </div>
-        <div class="menu-actions">
-            <button id="case1Button" class="menu-btn" onclick="openCase('case1')">Case 1 • Máquina de Doces</button>
-            <button id="case2Button" class="menu-btn" onclick="openCase('case2')">Case 2 • Em construção</button>
-        </div>
-    </section>
 
-    <section id="case1View" hidden>
-        <button class="back-menu-btn" onclick="goToMenu()">← Voltar ao menu</button>
+<main class="vending-shell" id="machine">
+    <header class="marquee">
+        <img src="assets/cat-top.png" alt="Gatinho no topo" class="cat-top-image">
+        <div class="marquee-sign">
+            <h1>NEKO CANDY STORE</h1>
+            <p>Máquina de Doces • Projeto Teoria da Computação</p>
         </div>
-    </section>
+    </header>
 
-    <section id="case1View" class="hidden">
-        <button class="back-menu-btn" onclick="goToMenu()">← Voltar ao menu</button>
-            <button id="case1Button" class="menu-btn active" onclick="switchCase('case1')">Case 1 • Máquina de Doces</button>
-            <button id="case2Button" class="menu-btn" onclick="switchCase('case2')">Case 2 • Em construção</button>
-        </div>
-    </section>
+    <section class="machine-body">
+        <aside class="left-cabinet panel-frame">
+            <h2>Tama</h2>
+            <div class="shelf-grid">
+                <div class="shelf-item">🍓<span>MoranGlow</span></div>
+                <div class="shelf-item">🍫<span>ChocoMiau</span></div>
+                <div class="shelf-item">🍪<span>MelCookie</span></div>
+            </div>
+            <div class="pickup-box">
+                <p>PEGUE SEU DOCE</p>
+                <div id="candyDrop" class="candy-drop">🐾</div>
+            </div>
+        </aside>
 
-    <section id="case1View">
-        <section class="vending-shell" id="machine">
-            <header class="marquee">
-                <img src="assets/cat-top.png" alt="Gatinho no topo" class="cat-top-image">
-                <div class="marquee-sign">
-                    <h1>NEKO CANDY STORE</h1>
-                    <p>Máquina de Doces • Projeto Teoria da Computação</p>
+        <section class="right-console panel-frame">
+            <div class="candy-cards">
+                <button class="candy-card" onclick="buyCandy(6,'MoranGlow')">
+                    <span class="paw">🐾</span>
+                    <strong>Doce A- MoranGlow</strong>
+                    <small>R$6,00</small>
+                </button>
+                <button class="candy-card" onclick="buyCandy(7,'ChocoMiau')">
+                    <span class="paw">🐾</span>
+                    <strong>Doce B- ChocoMiau</strong>
+                    <small>R$7,00</small>
+                </button>
+                <button class="candy-card" onclick="buyCandy(8,'MelCookie')">
+                    <span class="paw">🐾</span>
+                    <strong>Doce C- MelCookie</strong>
+                    <small>R$8,00</small>
+                </button>
+            </div>
+
+            <div class="status-row">
+                <div class="afd-panel">
+                    <h3>AFD STATUS</h3>
+                    <div id="afdStates" class="afd-states"></div>
+                    <p class="state-line">Estado atual: <span id="state">q0</span></p>
                 </div>
-            </header>
 
-            <section class="machine-body">
-                <aside class="left-cabinet panel-frame">
-                    <h2>Tama</h2>
-                    <div class="shelf-grid">
-                        <div class="shelf-item">🍓<span>MoranGlow</span></div>
-                        <div class="shelf-item">🍫<span>ChocoMiau</span></div>
-                        <div class="shelf-item">🍪<span>MelCookie</span></div>
+                <div class="money-panel">
+                    <h3>Inserir notas</h3>
+                    <div class="money-buttons">
+                        <button onclick="insertMoney(1)">R$1</button>
+                        <button onclick="insertMoney(2)">R$2</button>
+                        <button onclick="insertMoney(5)">R$5</button>
                     </div>
-                    <div class="pickup-box">
-                        <p>PEGUE SEU DOCE</p>
-                        <div id="candyDrop" class="candy-drop">🐾</div>
-                    </div>
-                </aside>
+                    <p class="balance">Saldo: <span id="balance">R$0,00</span></p>
+                    <p class="missing" id="missing">Falta: R$6,00 / R$7,00 / R$8,00</p>
+                </div>
+            </div>
 
-                <section class="right-console panel-frame">
-                    <div class="candy-cards">
-                        <button class="candy-card" onclick="buyCandy(6,'MoranGlow')">
-                            <span class="paw">🐾</span>
-                            <strong>Doce A- MoranGlow</strong>
-                            <small>R$6,00</small>
-                        </button>
-                        <button class="candy-card" onclick="buyCandy(7,'ChocoMiau')">
-                            <span class="paw">🐾</span>
-                            <strong>Doce B- ChocoMiau</strong>
-                            <small>R$7,00</small>
-                        </button>
-                        <button class="candy-card" onclick="buyCandy(8,'MelCookie')">
-                            <span class="paw">🐾</span>
-                            <strong>Doce C- MelCookie</strong>
-                            <small>R$8,00</small>
-                        </button>
-                    </div>
-
-                    <div class="status-row">
-                        <div class="afd-panel">
-                            <h3>AFD STATUS</h3>
-                            <div id="afdStates" class="afd-states"></div>
-                            <p class="state-line">Estado atual: <span id="state">q0</span></p>
-                        </div>
-
-                        <div class="money-panel">
-                            <h3>Inserir notas</h3>
-                            <div class="money-buttons">
-                                <button onclick="insertMoney(1)">R$1</button>
-                                <button onclick="insertMoney(2)">R$2</button>
-                                <button onclick="insertMoney(5)">R$5</button>
-                            </div>
-                            <p class="balance">Saldo: <span id="balance">R$0,00</span></p>
-                            <p class="missing" id="missing">Falta: R$6,00 / R$7,00 / R$8,00</p>
-                        </div>
-                    </div>
-
-                    <div class="message-row">
-                        <p id="message">Insira dinheiro para começar 💰</p>
-                        <button class="reset" onclick="resetMachine()">Resetar</button>
-                    </div>
-                </section>
-            </section>
-        </section>
-    </section>
-
-    <section id="case2View" hidden>
-    <section id="case2View" class="hidden">
-        <button class="back-menu-btn" onclick="goToMenu()">← Voltar ao menu</button>
-        <section class="case2-shell panel-frame">
-            <h2>Case 2</h2>
-            <p>Este espaço está preparado para o próximo cenário.</p>
-            <p>Mantenha a estética Neko e implemente a lógica aqui quando o case 2 for definido.</p>
-            <div class="case2-placeholder">🐾 Em construção 🐾</div>
+            <div class="message-row">
+                <p id="message">Insira dinheiro para começar 💰</p>
+                <button class="reset" onclick="resetMachine()">Resetar</button>
+            </div>
         </section>
     </section>
 </main>

@@ -4,35 +4,6 @@ const candyEmoji = { MoranGlow: '🍓', ChocoMiau: '🍫', MelCookie: '🍪' };
 let balance = 0;
 let state = 'q0';
 
-function openCase(caseId) {
-    const isCase1 = caseId === 'case1';
-    document.getElementById('menuView').hidden = true;
-    document.getElementById('case1View').hidden = !isCase1;
-    document.getElementById('case2View').hidden = isCase1;
-}
-
-function goToMenu() {
-    document.getElementById('menuView').hidden = false;
-    document.getElementById('case1View').hidden = true;
-    document.getElementById('case2View').hidden = true;
-    document.getElementById('menuView').classList.add('hidden');
-    document.getElementById('case1View').classList.toggle('hidden', !isCase1);
-    document.getElementById('case2View').classList.toggle('hidden', isCase1);
-}
-
-function goToMenu() {
-    document.getElementById('menuView').classList.remove('hidden');
-    document.getElementById('case1View').classList.add('hidden');
-    document.getElementById('case2View').classList.add('hidden');
-function switchCase(caseId) {
-    const isCase1 = caseId === 'case1';
-
-    document.getElementById('case1View').classList.toggle('hidden', !isCase1);
-    document.getElementById('case2View').classList.toggle('hidden', isCase1);
-    document.getElementById('case1Button').classList.toggle('active', isCase1);
-    document.getElementById('case2Button').classList.toggle('active', !isCase1);
-}
-
 function renderAfd() {
     const afdContainer = document.getElementById('afdStates');
     afdContainer.innerHTML = '';
@@ -147,5 +118,3 @@ function resetMachine() {
 }
 
 updateDisplay();
-goToMenu();
-switchCase('case1');
