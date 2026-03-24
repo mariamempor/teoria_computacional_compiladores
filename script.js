@@ -4,6 +4,15 @@ const candyEmoji = { MoranGlow: '🍓', ChocoMiau: '🍫', MelCookie: '🍪' };
 let balance = 0;
 let state = 'q0';
 
+function switchCase(caseId) {
+    const isCase1 = caseId === 'case1';
+
+    document.getElementById('case1View').classList.toggle('hidden', !isCase1);
+    document.getElementById('case2View').classList.toggle('hidden', isCase1);
+    document.getElementById('case1Button').classList.toggle('active', isCase1);
+    document.getElementById('case2Button').classList.toggle('active', !isCase1);
+}
+
 function renderAfd() {
     const afdContainer = document.getElementById('afdStates');
     afdContainer.innerHTML = '';
@@ -118,3 +127,4 @@ function resetMachine() {
 }
 
 updateDisplay();
+switchCase('case1');
