@@ -9,6 +9,8 @@
 <body>
 <main class="app-shell">
     <section id="menuView" class="menu-shell panel-frame">
+        <div class="menu-title-wrap">
+            <h1>Escolha o Caso</h1>
     <section class="menu-shell panel-frame">
         <div class="menu-title-wrap">
           <h1>Escolha o Caso</h1>
@@ -17,6 +19,11 @@
         <div class="menu-actions">
             <button id="case1Button" class="menu-btn" onclick="openCase('case1')">Case 1 • Máquina de Doces</button>
             <button id="case2Button" class="menu-btn" onclick="openCase('case2')">Case 2 • Em construção</button>
+        </div>
+    </section>
+
+    <section id="case1View" hidden>
+        <button class="back-menu-btn" onclick="goToMenu()">← Voltar ao menu</button>
         </div>
     </section>
 
@@ -98,6 +105,7 @@
         </section>
     </section>
 
+    <section id="case2View" hidden>
     <section id="case2View" class="hidden">
         <button class="back-menu-btn" onclick="goToMenu()">← Voltar ao menu</button>
         <section class="case2-shell panel-frame">

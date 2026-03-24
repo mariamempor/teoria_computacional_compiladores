@@ -20,11 +20,14 @@ body {
     background: linear-gradient(145deg, #fff8ef 0%, #f6ede2 44%, #e8f7ff 100%);
     background-size: 180% 180%;
     animation: bgFlow 13s ease-in-out infinite alternate;
+<<<<<<< codex/add-menu-for-case-selection-69yefh
+=======
     background:
         radial-gradient(circle at 14% 18%, rgba(124, 231, 255, 0.45), transparent 22%),
         radial-gradient(circle at 84% 14%, rgba(255, 181, 145, 0.4), transparent 20%),
         radial-gradient(circle at 55% 80%, rgba(120, 255, 138, 0.25), transparent 24%),
         radial-gradient(circle at 50% 0%, #fff8ef, var(--bg));
+>>>>>>> feature-maquina-doces
     color: var(--text);
     display: grid;
     place-items: center;
@@ -152,6 +155,12 @@ body::after {
     display: none;
 }
 
+<<<<<<< codex/add-menu-for-case-selection-69yefh
+#menuView[hidden],
+#case1View[hidden],
+#case2View[hidden] {
+    display: none !important;
+=======
 .app-shell {
     width: min(1180px, 100%);
     display: grid;
@@ -233,6 +242,7 @@ body::after {
 
 .hidden {
     display: none;
+>>>>>>> feature-maquina-doces
 }
 
 .vending-shell {
