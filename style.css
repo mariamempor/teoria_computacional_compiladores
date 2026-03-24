@@ -20,6 +20,14 @@ body {
     background: linear-gradient(145deg, #fff8ef 0%, #f6ede2 44%, #e8f7ff 100%);
     background-size: 180% 180%;
     animation: bgFlow 13s ease-in-out infinite alternate;
+<<<<<<< codex/add-menu-for-case-selection-69yefh
+=======
+    background:
+        radial-gradient(circle at 14% 18%, rgba(124, 231, 255, 0.45), transparent 22%),
+        radial-gradient(circle at 84% 14%, rgba(255, 181, 145, 0.4), transparent 20%),
+        radial-gradient(circle at 55% 80%, rgba(120, 255, 138, 0.25), transparent 24%),
+        radial-gradient(circle at 50% 0%, #fff8ef, var(--bg));
+>>>>>>> feature-maquina-doces
     color: var(--text);
     display: grid;
     place-items: center;
@@ -147,10 +155,94 @@ body::after {
     display: none;
 }
 
+<<<<<<< codex/add-menu-for-case-selection-69yefh
 #menuView[hidden],
 #case1View[hidden],
 #case2View[hidden] {
     display: none !important;
+=======
+.app-shell {
+    width: min(1180px, 100%);
+    display: grid;
+    gap: 14px;
+}
+
+.menu-shell {
+    position: relative;
+    overflow: hidden;
+    padding: 18px;
+    display: grid;
+    gap: 14px;
+}
+
+.menu-shell::before {
+    content: "🐾  🐾  🐾";
+    position: absolute;
+    right: 16px;
+    top: 12px;
+    opacity: 0.16;
+    font-size: 2.4rem;
+}
+
+.menu-shell::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(130deg, rgba(109, 201, 240, 0.25), rgba(255, 159, 190, 0.22));
+    pointer-events: none;
+}
+
+.menu-title-wrap,
+.menu-actions {
+    position: relative;
+    z-index: 1;
+}
+
+.menu-title-wrap h1 {
+    margin: 0;
+    color: #ffe8b8;
+}
+
+.menu-title-wrap p {
+    margin: 4px 0 0;
+    color: #d2eeff;
+    font-weight: 700;
+}
+
+.menu-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.menu-btn {
+    border: 3px solid #ffd38f;
+    border-radius: 16px;
+    background: linear-gradient(160deg, #6bc9f0, #3b7ec3);
+    color: #fff;
+    font-weight: 800;
+    padding: 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.menu-btn:nth-child(2) {
+    background: linear-gradient(160deg, #d6a0ff, #9a64d4);
+}
+
+.menu-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+}
+
+.menu-btn.active {
+    outline: 3px solid #78ff8a;
+    box-shadow: 0 0 16px rgba(120, 255, 138, 0.8);
+}
+
+.hidden {
+    display: none;
+>>>>>>> feature-maquina-doces
 }
 
 .vending-shell {
