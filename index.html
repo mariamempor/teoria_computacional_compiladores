@@ -8,12 +8,20 @@
 </head>
 <body>
 <main class="app-shell">
+    <section id="menuView" class="menu-shell panel-frame">
     <section class="menu-shell panel-frame">
         <div class="menu-title-wrap">
-            <h1>Escolha o Caso</h1>
+          <h1>Escolha o Caso</h1>
             <p>Selecione qual cenário você quer executar</p>
         </div>
         <div class="menu-actions">
+            <button id="case1Button" class="menu-btn" onclick="openCase('case1')">Case 1 • Máquina de Doces</button>
+            <button id="case2Button" class="menu-btn" onclick="openCase('case2')">Case 2 • Em construção</button>
+        </div>
+    </section>
+
+    <section id="case1View" class="hidden">
+        <button class="back-menu-btn" onclick="goToMenu()">← Voltar ao menu</button>
             <button id="case1Button" class="menu-btn active" onclick="switchCase('case1')">Case 1 • Máquina de Doces</button>
             <button id="case2Button" class="menu-btn" onclick="switchCase('case2')">Case 2 • Em construção</button>
         </div>
@@ -91,6 +99,7 @@
     </section>
 
     <section id="case2View" class="hidden">
+        <button class="back-menu-btn" onclick="goToMenu()">← Voltar ao menu</button>
         <section class="case2-shell panel-frame">
             <h2>Case 2</h2>
             <p>Este espaço está preparado para o próximo cenário.</p>
