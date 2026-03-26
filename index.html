@@ -7,8 +7,28 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <video id="bgVideo" autoplay muted loop>
+    <source src="assets/fundo.mp4" type="video/mp4">
+</video>
+<!-- MENU INICIAL -->
+<div id="menuScreen" class="menu-screen">
+    <div class="menu-container panel-frame">
+        <h1>🎮 Escolha um Case</h1>
+        <p>Selecione uma opção para continuar</p>
 
-<main class="vending-shell" id="machine">
+        <div class="menu-buttons">
+            <button class="pixel-btn" onclick="startCase(1)">
+                ▶ Case 1 - Máquina de Doces
+            </button>
+
+            <button class="pixel-btn" onclick="startCase(2)">
+                🧪 Case 2 - Em desenvolvimento
+            </button>
+        </div>
+    </div>
+</div>
+
+<main class="vending-shell" id="machine" style="display: none;">
     <header class="marquee">
         <img src="assets/cat-top.png" alt="Gatinho no topo" class="cat-top-image">
         <div class="marquee-sign">
@@ -72,6 +92,7 @@
             <div class="message-row">
                 <p id="message">Insira dinheiro para começar 💰</p>
                 <button class="reset" onclick="resetMachine()">Resetar</button>
+                <button class="back-btn" onclick="goToMenu()">⬅ Menu</button>
             </div>
         </section>
     </section>
@@ -80,6 +101,7 @@
 <audio id="coinSound" src="assets/coin.mp3"></audio>
 <audio id="dispenseSound" src="assets/dispense.mp3"></audio>
 <audio id="errorSound" src="assets/error.mp3"></audio>
+<audio id="bgMusic" src="assets/racingHearts.mp3" loop></audio>
 
 <script src="script.js"></script>
 </body>

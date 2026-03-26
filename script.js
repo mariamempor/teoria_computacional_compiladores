@@ -118,3 +118,42 @@ function resetMachine() {
 }
 
 updateDisplay();
+function startCase(option) {
+    const menu = document.getElementById("menuScreen");
+    const machine = document.getElementById("machine");
+
+    if (option === 1) {
+        menu.classList.add("arcade-out");
+
+        setTimeout(() => {
+            menu.style.display = "none";
+            menu.classList.remove("arcade-out");
+
+            machine.style.display = "block";
+            machine.classList.add("arcade-in");
+        }, 500);
+    }
+
+    if (option === 2) {
+        alert("🚧 Case 2 ainda está em desenvolvimento!");
+    }
+}
+function goToMenu() {
+    const menu = document.getElementById("menuScreen");
+    const machine = document.getElementById("machine");
+
+    machine.classList.add("arcade-out");
+
+    setTimeout(() => {
+        machine.style.display = "none";
+        machine.classList.remove("arcade-out");
+
+        menu.style.display = "grid";
+        menu.classList.add("arcade-in");
+    }, 500);
+}
+window.addEventListener("click", () => {
+    const music = document.getElementById("bgMusic");
+    music.volume = 0.3;
+    music.play();
+}, { once: true });
