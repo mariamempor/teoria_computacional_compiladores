@@ -152,8 +152,17 @@ function goToMenu() {
         menu.classList.add("arcade-in");
     }, 500);
 }
-window.addEventListener("click", () => {
+window.addEventListener("load", () => {
     const music = document.getElementById("bgMusic");
-    music.volume = 0.3;
-    music.play();
-}, { once: true });
+    music.volume = 0.25;
+
+    const playPromise = music.play();
+
+    if (playPromise !== undefined) {
+        playPromise.catch(() => { 
+            document.addEventListener("click", () => {
+                music.play();
+            }, { once: true});
+        });
+    }
+});
