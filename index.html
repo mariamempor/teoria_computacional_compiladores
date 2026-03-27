@@ -22,7 +22,7 @@
             </button>
 
             <button class="pixel-btn" onclick="startCase(2)">
-                🧪 Case 2 - Em desenvolvimento
+                🛗 Case 2 - Elevador AFD
             </button>
         </div>
     </div>
@@ -92,6 +92,84 @@
             <div class="message-row">
                 <p id="message">Insira dinheiro para começar 💰</p>
                 <button class="reset" onclick="resetMachine()">Resetar</button>
+                <button class="back-btn" onclick="goToMenu()">⬅ Menu</button>
+            </div>
+        </section>
+    </section>
+</main>
+
+<main class="vending-shell" id="elevatorCase" style="display: none;">
+    <header class="marquee">
+        <img src="assets/cat-top.png" alt="Gatinho no topo" class="cat-top-image">
+        <div class="marquee-sign">
+            <h1>NEKO ELEVATOR CLUB</h1>
+            <p>AFD do Elevador • Retro Cats Edition</p>
+        </div>
+    </header>
+
+    <section class="machine-body elevator-body">
+        <aside class="left-cabinet panel-frame elevator-shaft-panel">
+            <h2>Arranha-Gatos</h2>
+            <div class="shaft-wrapper">
+                <div class="shaft-floor floor3"><span>3º</span></div>
+                <div class="shaft-floor floor2"><span>2º</span></div>
+                <div class="shaft-floor floor1"><span>1º</span></div>
+                <div class="shaft-floor floor0"><span>Térreo</span></div>
+                <div id="elevatorCar" class="elevator-car door-open">
+                    <div class="door left"></div>
+                    <div class="door right"></div>
+                    <div class="car-cat">🐱</div>
+                </div>
+            </div>
+            <div class="pickup-box">
+                <p>PAINEL DA CABINE</p>
+                <div class="candy-drop" id="elevatorDirection">⏺ Parado</div>
+            </div>
+        </aside>
+
+        <section class="right-console panel-frame">
+            <div class="elevator-cards">
+                <button class="candy-card elevator-card" onclick="requestFloor(0)">
+                    <span class="paw">🐾</span>
+                    <strong>Ir para o Térreo</strong>
+                    <small>Destino q0 / q1</small>
+                </button>
+                <button class="candy-card elevator-card" onclick="requestFloor(1)">
+                    <span class="paw">🐾</span>
+                    <strong>Ir para 1º Andar</strong>
+                    <small>Destino q2 / q3</small>
+                </button>
+                <button class="candy-card elevator-card" onclick="requestFloor(2)">
+                    <span class="paw">🐾</span>
+                    <strong>Ir para 2º Andar</strong>
+                    <small>Destino q4 / q5</small>
+                </button>
+                <button class="candy-card elevator-card" onclick="requestFloor(3)">
+                    <span class="paw">🐾</span>
+                    <strong>Ir para 3º Andar</strong>
+                    <small>Destino q6 / q7</small>
+                </button>
+            </div>
+
+            <div class="status-row elevator-status-row">
+                <div class="afd-panel">
+                    <h3>AFD - ELEVADOR</h3>
+                    <div id="elevatorAfdStates" class="afd-states"></div>
+                    <p class="state-line">Estado atual: <span id="elevatorState">q0</span></p>
+                    <p class="state-line">Portas: <span id="doorStatus">Abertas</span></p>
+                </div>
+
+                <div class="money-panel">
+                    <h3>PAINEL DE CHAMADA</h3>
+                    <p class="balance">Andar atual: <span id="currentFloor">Térreo</span></p>
+                    <p class="missing">Solicitação: <span id="targetFloor">Nenhuma</span></p>
+                    <p class="missing">Regra AFD: move 1 andar por vez e portas fechadas no trajeto.</p>
+                </div>
+            </div>
+
+            <div class="message-row">
+                <p id="elevatorMessage">Elevador pronto no térreo. Escolha um andar 🛗</p>
+                <button class="reset" onclick="resetElevator()">Resetar</button>
                 <button class="back-btn" onclick="goToMenu()">⬅ Menu</button>
             </div>
         </section>
