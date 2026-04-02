@@ -26,6 +26,7 @@ body {
 
 .vending-shell {
     width: min(1180px, 100%);
+    position: relative;
 }
 
 .marquee {
@@ -242,13 +243,36 @@ body {
     flex-wrap: wrap;
 }
 
-.money-buttons button,
-.reset {
+.money-buttons button {
     border: none;
     border-radius: 10px;
     padding: 8px 10px;
     font-weight: 800;
     cursor: pointer;
+}
+.reset {
+    background: #ffa470;
+    color: #36201a;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-weight: 800;
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 0.2s;
+}
+
+.reset:hover {
+    transform: scale(1.05);
+}
+
+.right-console {
+    padding: 14px;
+    position: relative; /* 👈 ESSENCIAL */
+}
+.reset:hover {
+    transform: scale(1.05);
 }
 
 .money-buttons button {
@@ -257,26 +281,50 @@ body {
 }
 
 .message-row {
-    margin-top: 10px;
-    background: rgba(5, 11, 35, 0.9);
-    border: 2px solid #66d8ff;
-    border-radius: 12px;
-    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
 }
 
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
 #message {
     margin: 0;
     color: #e7f8ff;
     font-weight: 700;
 }
+.message-row {
+    margin-top: 10px;
+    background: rgba(5, 11, 35, 0.9);
+    border: 2px solid #66d8ff;
+    border-radius: 12px;
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    position: relative; /* base do botão */
+}
 
 .reset {
     background: #ffa470;
     color: #36201a;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-weight: 800;
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 0.2s;
+}
+
+.reset:hover {
+    transform: scale(1.05);
 }
 
 .shake {
@@ -456,11 +504,19 @@ body {
 .back-btn {
     border: none;
     border-radius: 10px;
-    padding: 8px 10px;
+    padding: 10px 14px;
     font-weight: 800;
     cursor: pointer;
+
     background: #7de7ff;
     color: #0f2a4a;
+
+    box-shadow: 0 0 8px #7de7ff;
+    transition: 0.2s;
+}
+
+.back-btn:hover {
+    transform: scale(1.05);
 }
 
 .elevator-body {
