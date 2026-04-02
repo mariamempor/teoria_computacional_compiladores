@@ -1,113 +1,179 @@
-# 🍬🐾 Máquina de Doces - Simulação AFD
+# 🎮🐱 NEKO AUTOMATA ARCADE 🍬🛗
 
-![Status](https://img.shields.io/badge/status-concluído-brightgreen)
-![HTML](https://img.shields.io/badge/HTML-5-orange)
-![CSS](https://img.shields.io/badge/CSS-3-blue)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
+<div align="center">
+
+<img src="https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif" width="120"/>
+
+✨ **Bem-vindo ao Arcade da Teoria da Computação!** ✨  
+Escolha seu desafio e veja os autômatos ganharem vida 🎮  
+
+</div>
 
 ---
 
-## 👥 Integrantes
+<div align="center">
 
-Breno Henrique Ruiz dos Santos — 823131791
+![Status](https://img.shields.io/badge/status-READY%20TO%20PLAY-00ff88?style=for-the-badge&logo=arcade&logoColor=black)
+![AFD](https://img.shields.io/badge/AFD-Máquina%20de%20Doces-ff9b5e?style=for-the-badge)
+![PDA](https://img.shields.io/badge/PDA-Elevador%20Inteligente-7de7ff?style=for-the-badge)
+![JavaScript](https://img.shields.io/badge/JavaScript-Game%20Logic-yellow?style=for-the-badge&logo=javascript)
 
-Maria Eduarda Medeiro Porto — 824144948
+</div>
 
-Matheus Alves Santana — 824144952
+---
 
+# 🖥️ 🎥 PREVIEW DO PROJETO
 
-## 🎥 Demonstração
+<div align="center">
 
 ![Demo da Máquina](assets/demo.gif)
 
----
 
-## 🎮 Sobre o Projeto
+</div>
 
-Simulação interativa de uma máquina de doces desenvolvida em **HTML, CSS e JavaScript**, baseada em um **Autômato Finito Determinístico (AFD)**.
+## 👥 Integrantes
 
-O sistema simula:
-
-- Inserção de dinheiro
-- Transição de estados
-- Liberação de produtos
-- Cálculo de troco
-- Feedback visual e sonoro
+- Breno Henrique Ruiz dos Santos — 823131791  
+- Maria Eduarda Medeiro Porto — 824144948  
+- Matheus Alves Santana — 824144952  
 
 ---
 
-## ⚙️ Regras da Máquina
+# 🎮 Sobre o Projeto
 
-- 💰 Valores aceitos: **R$ 1,00 | R$ 2,00 | R$ 5,00**
-- 🚫 Valor máximo permitido: **R$ 10,00**
+Este projeto é uma **simulação interativa** de autômatos:
 
-### 🍭 Doces disponíveis:
+🎯 **Case 1 → AFD (Máquina de Doces)**  
+🧠 **Case 2 → PDA (Elevador com Pilha)**  
 
-| Código | Nome        | Preço |
-|--------|------------|------|
-| A      | Moranglow  | R$ 6,00 |
-| B      | ChocoMiau  | R$ 7,00 |
-| C      | MelCookie  | R$ 8,00 |
+Tudo com interface animada, som e interação em tempo real.
 
 ---
 
-## 🎯 Resultados Possíveis
+# 🍬 Case 1 — Máquina de Doces (AFD)
 
-| Doce | Sem troco | Com troco |
-|------|----------|----------|
-| A    | ✓        | ✓        |
-| B    | ✓        | ✓        |
-| C    | ✓        | ✓        |
+Simula um:
+
+👉 **Autômato Finito Determinístico**
 
 ---
 
-## 🧠 Estrutura do AFD
+## ⚙️ Regras
 
-- **Estados:** `q0` até `q10`
-- **Estado inicial:** `q0`
-- **Alfabeto:** `{1, 2, 5}`
-- **Função de transição:**  
+- 💰 Aceita: `1 | 2 | 5`
+- 🚫 Máximo: `10`
+
+| Doce | Preço |
+|------|------|
+| MoranGlow | R$6 |
+| ChocoMiau | R$7 |
+| MelCookie | R$8 |
+
+---
+
+## 🧠 Estrutura
+
+- Estados: `q0 → q10`
+- Transição:  
   `δ(qx, valor) → q(x + valor)`
 
-### 🚫 Regra de limite:
-Se ultrapassar **R$10**, a máquina bloqueia a operação.
+---
+
+## 🎯 Features
+
+✔ Troco automático  
+✔ Estados visuais  
+✔ Sons  
+✔ Animações  
+
+---
+
+# 🛗 Case 2 — Elevador (Autômato de Pilha)
+
+Simula um:
+
+👉 **PDA (Pushdown Automaton)**
+
+---
+
+## 🧠 Conceito
+
+- Usa **pilha (stack)**  
+- Guarda múltiplas requisições  
+- Resolve em ordem  
+
+---
+
+## ⚙️ Regras
+
+- Move 1 andar por vez  
+- Portas:
+  - ❌ fechadas em movimento  
+  - ✅ abertas ao chegar  
 
 ---
 
 ## 🔄 Funcionamento
-q0 → q1 → q3 → q8
 
-Estados de compra:
-
-- `q6` → pode comprar A  
-- `q7` → pode comprar A e B  
-- `q8+` → pode comprar todos  
-
-Após a compra:
-- Volta para `q0`
+1. Usuário seleciona um andar  
+2. O andar é **empilhado (push)**  
+3. O elevador:
+   - Fecha portas 🚪
+   - Move andar por andar ⬆⬇
+   - Abre portas ao chegar  
+4. Pedido é removido da pilha (**pop**)  
 
 ---
 
-## 🕹️ Como Usar
+## ⚙️ Regras do Elevador
 
-### 💰 Inserir dinheiro
-Clique nos botões de inserção:
-* **R$1**
-* **R$2**
-* **R$5**
-
-### 🍬 Escolher doce
-* Os botões são **ativados automaticamente** quando o saldo é suficiente.
-* Cada botão representa um doce disponível.
-
-### 🎁 Receber produto
-* O doce é liberado na área de saída.
-* O **troco** (se houver) é exibido.
-* Sons e animações são executados automaticamente.
+- Move **1 andar por vez**
+- Portas:
+  - ❌ Fechadas em movimento
+  - ✅ Abertas ao chegar
+- Pode lidar com múltiplas requisições
 
 ---
 
-## 📁 Estrutura do Projeto
+## 🎯 Funcionalidades
+
+✔ Simulação de movimento realista  
+✔ Controle de portas  
+✔ Estados do AFD visíveis  
+✔ Direção do elevador  
+✔ Interface interativa  
+
+---
+
+# 🕹️ Como Usar
+
+## 🎮 Menu Inicial
+
+Ao abrir o projeto:
+
+- Escolha entre:
+  - 🍬 Máquina de Doces  
+  - 🛗 Elevador  
+
+---
+
+## 🍬 Case 1
+
+1. Insira dinheiro  
+2. Escolha um doce  
+3. Receba produto + troco  
+
+---
+
+## 🛗 Case 2
+
+1. Clique no andar desejado  
+2. Observe o movimento do elevador  
+3. Veja os estados e portas funcionando  
+
+---
+
+# 📁 Estrutura do Projeto
 
 ```text
 teoria_computacional_compiladores/
@@ -115,10 +181,11 @@ teoria_computacional_compiladores/
 ├── style.css
 ├── script.js
 ├── assets/
+│   ├── fundo.mp4
 │   ├── coin.mp3
 │   ├── dispense.mp3
 │   ├── error.mp3
 │   ├── cat-top.png
-│   ├── paw.png
-│   └── demo.gif
+│   ├── demo.gif
 └── README.md
+🚀 Destaq
