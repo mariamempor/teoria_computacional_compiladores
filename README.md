@@ -85,7 +85,7 @@ Simula um:
 
 ## 🧠 Estrutura
 
-- Estados: `q0 → q10`
+- Estados: `q0 → q9`
 - Transição:  
   `δ(qx, valor) → q(x + valor)`
 
