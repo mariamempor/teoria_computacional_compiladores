@@ -24,17 +24,24 @@ Escolha seu desafio e veja os autômatos ganharem vida 🎮
 ![PDA](https://img.shields.io/badge/Autômato-Pilha-7de7ff?style=for-the-badge)
 
 </div>
-
 ---
 
-# 🖥️ 🎥 PREVIEW DO PROJETO
+# 🖥️ 🎥 Preview do Projeto
 
 <div align="center">
 
-![Demo da Máquina](assets/demo.gif)
+### 🎮 Menu Inicial
+![Menu](assets/menu.gif)
 
+### 🍬 Case 1 — Máquina de Doces
+![Maquina](assets/case1.gif)
+
+### 🛗 Case 2 — Elevador
+![Elevador](assets/case2.gif)
 
 </div>
+
+---
 
 ## 👥 Integrantes
 
