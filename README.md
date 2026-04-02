@@ -31,7 +31,7 @@ Escolha seu desafio e veja os autômatos ganharem vida 🎮
 
 <div align="center">
 
-![Demo da Máquina](assets/demo.gif)
+![Demo da Máquina](assets/demo.mp4)
 
 
 </div>
