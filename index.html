@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neko Candy Store</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <video id="bgVideo" autoplay muted loop>
+    <source src="assets/fundo.mp4" type="video/mp4">
+</video>
+<!-- MENU INICIAL -->
+<div id="menuScreen" class="menu-screen">
+    <div class="menu-container panel-frame">
+        <h1>🎮 Escolha um Case</h1>
+        <p>Selecione uma opção para continuar</p>
+
+        <div class="menu-buttons">
+            <button class="pixel-btn" onclick="startCase(1)">
+                ▶ Case 1 - Máquina de Doces
+            </button>
+
+            <button class="pixel-btn" onclick="startCase(2)">
+                🛗 Case 2 - Elevador AFD
+            </button>
+        </div>
+    </div>
+</div>
+
+<main class="vending-shell" id="machine" style="display: none;">
+    <header class="marquee">
+        <img src="assets/cat-top.png" alt="Gatinho no topo" class="cat-top-image">
+        <div class="marquee-sign">
+            <h1>NEKO CANDY STORE</h1>
+            <p>Máquina de Doces • Projeto Teoria da Computação</p>
+        </div>
+    </header>
+
+    <section class="machine-body">
+        <aside class="left-cabinet panel-frame">
+            <h2>Vitrine</h2>
+            <div class="shelf-grid">
+                <div class="shelf-item">🍓<span>MoranGlow</span></div>
+                <div class="shelf-item">🍫<span>ChocoMiau</span></div>
+                <div class="shelf-item">🍪<span>MelCookie</span></div>
+            </div>
+            <div class="pickup-box">
+                <p>PEGUE SEU DOCE</p>
+                <div id="candyDrop" class="candy-drop">🐾</div>
+            </div>
+        </aside>
+
+        <section class="right-console panel-frame">
+            <div class="candy-cards">
+                <button class="candy-card" onclick="buyCandy(6,'MoranGlow')">
+                    <span class="paw">🐾</span>
+                    <strong>Doce A- MoranGlow</strong>
+                    <small>R$6,00</small>
+                </button>
+                <button class="candy-card" onclick="buyCandy(7,'ChocoMiau')">
+                    <span class="paw">🐾</span>
+                    <strong>Doce B- ChocoMiau</strong>
+                    <small>R$7,00</small>
+                </button>
+                <button class="candy-card" onclick="buyCandy(8,'MelCookie')">
+                    <span class="paw">🐾</span>
+                    <strong>Doce C- MelCookie</strong>
+                    <small>R$8,00</small>
+                </button>
+            </div>
+
+            <div class="status-row">
+                <div class="afd-panel">
+                    <h3>AFD STATUS</h3>
+                    <div id="afdStates" class="afd-states"></div>
+                    <p class="state-line">Estado atual: <span id="state">q0</span></p>
+                </div>
+
+                <div class="money-panel">
+                    <h3>Inserir notas</h3>
+                    <div class="money-buttons">
+                        <button onclick="insertMoney(1)">R$1</button>
+                        <button onclick="insertMoney(2)">R$2</button>
+                        <button onclick="insertMoney(5)">R$5</button>
+                    </div>
+                    <p class="balance">Saldo: <span id="balance">R$0,00</span></p>
+                    <p class="missing" id="missing">Falta: R$6,00 / R$7,00 / R$8,00</p>
+                </div>
+            </div>
+
+            <div class="message-row">
+    <p id="message">Insira dinheiro para começar 💰</p>
+
+    <div class="action-buttons">
+        <button class="back-btn" onclick="goToMenu()">⬅ Voltar</button>
+        <button class="reset" onclick="resetMachine()">Resetar</button>
+    </div>
+</div>
+        </section>
+    </section>
+</main>
+<main class="vending-shell" id="elevatorCase" style="display: none;">
+    <header class="marquee">
+        <img src="assets/cat-top.png" alt="Gatinho no topo" class="cat-top-image">
+        <div class="marquee-sign">
+            <h1>NEKO ELEVATOR CLUB</h1>
+            <p>AFD do Elevador </p>
+        </div>
+    </header>
+
+    <section class="machine-body elevator-body">
+        <aside class="left-cabinet panel-frame elevator-shaft-panel">
+            <h2>Arranha-Gatos</h2>
+            <div class="shaft-wrapper">
+                <div class="shaft-floor floor3"><span>3º</span></div>
+                <div class="shaft-floor floor2"><span>2º</span></div>
+                <div class="shaft-floor floor1"><span>1º</span></div>
+                <div class="shaft-floor floor0"><span>Térreo</span></div>
+                <div id="elevatorCar" class="elevator-car door-open">
+                    <div class="door left"></div>
+                    <div class="door right"></div>
+                    <div class="car-cat">🐱</div>
+                </div>
+            </div>
+            <div class="pickup-box">
+                <p>PAINEL DA CABINE</p>
+                <div class="candy-drop" id="elevatorDirection">⏺ Parado</div>
+            </div>
+        </aside>
+
+        <section class="right-console panel-frame">
+            <div class="elevator-cards">
+                <button class="candy-card elevator-card" onclick="requestFloor(0)">
+                    <span class="paw">🐾</span>
+                    <strong>Ir para o Térreo</strong>
+                    <small>Destino q0 / q1</small>
+                </button>
+                <button class="candy-card elevator-card" onclick="requestFloor(1)">
+                    <span class="paw">🐾</span>
+                    <strong>Ir para 1º Andar</strong>
+                    <small>Destino q2 / q3</small>
+                </button>
+                <button class="candy-card elevator-card" onclick="requestFloor(2)">
+                    <span class="paw">🐾</span>
+                    <strong>Ir para 2º Andar</strong>
+                    <small>Destino q4 / q5</small>
+                </button>
+                <button class="candy-card elevator-card" onclick="requestFloor(3)">
+                    <span class="paw">🐾</span>
+                    <strong>Ir para 3º Andar</strong>
+                    <small>Destino q6 / q7</small>
+                </button>
+            </div>
+
+            <div class="status-row elevator-status-row">
+                <div class="afd-panel">
+                    <h3>AFD - ELEVADOR</h3>
+                    <div id="elevatorAfdStates" class="afd-states"></div>
+                    <p class="state-line">Estado atual: <span id="elevatorState">q0</span></p>
+                    <p class="state-line">Portas: <span id="doorStatus">Abertas</span></p>
+                </div>
+
+                <div class="money-panel">
+                    <h3>PAINEL DE CHAMADA</h3>
+                    <p class="balance">Andar atual: <span id="currentFloor">Térreo</span></p>
+                    <p class="missing">Solicitação: <span id="targetFloor">Nenhuma</span></p>
+                    <p class="missing">Regra AFD: move 1 andar por vez e portas fechadas no trajeto.</p>
+                </div>
+            </div>
+
+            <div class="message-row">
+                <p id="elevatorMessage">Elevador pronto no térreo. Escolha um andar 🛗</p>
+                <div class="action-buttons">
+        <button class="back-btn" onclick="goToMenu()">⬅ Voltar</button>
+                <button class="reset" onclick="resetElevator()">Resetar</button>
+
+
+            </div>
+        </section>
+    </section>
+</main>
+
+<audio id="coinSound" src="assets/coin.mp3"></audio>
+<audio id="dispenseSound" src="assets/dispense.mp3"></audio>
+<audio id="errorSound" src="assets/error.mp3"></audio>
+<audio id="bgMusic" src="assets/racingHearts.mp3" loop></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
