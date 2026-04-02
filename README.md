@@ -1,8 +1,11 @@
-# 🎮🐱 NEKO AUTOMATA ARCADE 🍬🛗
-
 <div align="center">
 
-<img src="https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif" width="120"/>
+<img src="assets/banner.png" width="100%"/>
+
+</div>
+<div align="center">
+
+
 
 ✨ **Bem-vindo ao Arcade da Teoria da Computação!** ✨  
 Escolha seu desafio e veja os autômatos ganharem vida 🎮  
@@ -13,10 +16,12 @@ Escolha seu desafio e veja os autômatos ganharem vida 🎮
 
 <div align="center">
 
-![Status](https://img.shields.io/badge/status-READY%20TO%20PLAY-00ff88?style=for-the-badge&logo=arcade&logoColor=black)
-![AFD](https://img.shields.io/badge/AFD-Máquina%20de%20Doces-ff9b5e?style=for-the-badge)
-![PDA](https://img.shields.io/badge/PDA-Elevador%20Inteligente-7de7ff?style=for-the-badge)
-![JavaScript](https://img.shields.io/badge/JavaScript-Game%20Logic-yellow?style=for-the-badge&logo=javascript)
+![Status](https://img.shields.io/badge/status-READY%20TO%20PLAY-00ff88?style=for-the-badge)
+![HTML](https://img.shields.io/badge/HTML-5-orange?style=for-the-badge&logo=html5)
+![CSS](https://img.shields.io/badge/CSS-3-blue?style=for-the-badge&logo=css3)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge&logo=javascript)
+![AFD](https://img.shields.io/badge/Autômato-AFD-ff9b5e?style=for-the-badge)
+![PDA](https://img.shields.io/badge/Autômato-Pilha-7de7ff?style=for-the-badge)
 
 </div>
 
@@ -188,4 +193,4 @@ teoria_computacional_compiladores/
 │   ├── cat-top.png
 │   ├── demo.gif
 └── README.md
-🚀 Destaq
+
