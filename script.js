@@ -11,6 +11,7 @@ const floorToBottom = [14, 104, 194, 284];
 const elevator = {
     currentFloor: 0,
     targetFloor: null,
+    lastFloor: 0,
     doorsOpen: true,
     moving: false,
     state: 'q0'
@@ -20,12 +21,12 @@ function renderAfd() {
     const afdContainer = document.getElementById('afdStates');
     afdContainer.innerHTML = '';
 
-    for (let i = 0; i <= 10; i += 1) {
+    for (let i = 0; i <= 9; i += 1) {
         const node = document.createElement('span');
         node.className = 'afd-node';
         node.textContent = `q${i}`;
 
-        if (state === `q${i}` || (state === 'q10+' && i === 10)) {
+        if (state === `q${i}` || (state === 'q9+' && i === 9)) {
             node.classList.add('active');
         }
 
@@ -85,7 +86,11 @@ function updateElevatorDisplay() {
 
     const direction = document.getElementById('elevatorDirection');
     if (elevator.moving) {
-        direction.innerText = elevator.targetFloor > elevator.currentFloor ? '⬆ Subindo' : '⬇ Descendo';
+        if (elevator.targetFloor > elevator.lastFloor) {
+            direction.innerText = '⬆ Subindo';
+        } else if (elevator.targetFloor < elevator.lastFloor) {
+            direction.innerText = '⬇ Descendo';
+        }
     } else {
         direction.innerText = '⏺ Parado';
     }
@@ -103,9 +108,9 @@ function setElevatorMessage(text) {
 
 function insertMoney(value) {
 
-    if (balance + value > 10) {
+    if (balance + value > 9) {
         document.getElementById('errorSound').play();
-        setMessage('⚠️ Limite máximo é R$10,00!');
+        setMessage('⚠️ Limite máximo é R$9,00!');
         shakeMachine();
         return;
     }
@@ -114,7 +119,7 @@ function insertMoney(value) {
 
     document.getElementById('coinSound').play();
 
-    state = balance >= 8 ? 'q8+' : `q${balance}`;
+    state = balance >= 9 ? 'q9+' : `q${balance}`;
 
     setMessage(`Você inseriu ${formatMoney(value)} 💰`);
     updateDisplay();
@@ -196,6 +201,7 @@ async function requestFloor(targetFloor) {
     }
 
     elevator.targetFloor = targetFloor;
+    elevator.lastFloor = elevator.currentFloor;
     elevator.doorsOpen = false;
     elevator.moving = true;
     elevator.state = getElevatorStateFor(elevator.currentFloor, false);
