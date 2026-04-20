@@ -27,15 +27,6 @@ Escolha seu desafio e veja os autômatos ganharem vida 🎮
 
 ---
 
-# 🖥️ 🎥 PREVIEW DO PROJETO
-
-<div align="center">
-
-![Demo da Máquina](assets/demo.gif)
-
-
-</div>
-
 ## 👥 Integrantes
 
 - Breno Henrique Ruiz dos Santos — 823131791  
