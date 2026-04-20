@@ -24,6 +24,9 @@
             <button class="pixel-btn" onclick="startCase(2)">
                 🛗 Case 2 - Elevador AFD
             </button>
+            <button class="pixel-btn" onclick="startCase(3)">
+                🧠 Case 3 - Analisador Léxico
+            </button>
         </div>
     </div>
 </div>
@@ -176,6 +179,76 @@
                 <button class="reset" onclick="resetElevator()">Resetar</button>
 
 
+            </div>
+        </section>
+    </section>
+</main>
+<main class="vending-shell" id="lexerCase" style="display: none;">
+    <header class="marquee">
+        <img src="assets/cat-top.png" alt="Gatinho no topo" class="cat-top-image">
+        <div class="marquee-sign">
+            <h1>NEKO LEXER LAB</h1>
+            <p>Case 3 • Scanner Léxico </p>
+        </div>
+    </header>
+
+    <section class="machine-body lexer-body">
+        <aside class="left-cabinet panel-frame">
+            <h2>Entrada de Código</h2>
+            <div class="terminal-box typing-box">
+                <textarea id="sourceCodeInput" class="code-input" spellcheck="false">int x = 10;
+float y = x + 2.5;
+// comentário
+</textarea>
+            </div>
+
+            <div class="lexer-actions">
+                <button class="pixel-btn mini-btn" onclick="analyzeLexical()">▶️ Analisar</button>
+                <button class="pixel-btn mini-btn" onclick="resetLexer()">🔄 Resetar</button>
+                <button class="back-btn" onclick="goToMenu()">⬅ Voltar</button>
+            </div>
+        </aside>
+
+        <section class="right-console panel-frame">
+            <div class="status-row lexer-status-row">
+                <div class="afd-panel terminal-box">
+                    <h3>1) Código de entrada</h3>
+                    <pre id="lexerOriginalCode" class="terminal-output">Aguardando análise...</pre>
+                </div>
+                <div class="money-panel terminal-box">
+                    <h3>2) Passo a passo</h3>
+                    <ul id="lexerSteps" class="lexer-steps">
+                        <li>Digite o código e clique em Analisar.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="status-row lexer-status-row">
+                <div class="afd-panel terminal-box">
+                    <h3>3) Tokens identificados</h3>
+                    <div id="lexerTokens" class="token-stream"></div>
+                </div>
+                <div class="money-panel terminal-box">
+                    <h3>4) Tabela de símbolos</h3>
+                    <table class="symbol-table">
+                        <thead>
+                            <tr>
+                                <th>Token</th>
+                                <th>Tipo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="symbolTableBody">
+                            <tr><td colspan="2">Sem identificadores no momento.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="message-row terminal-box">
+                <div>
+                    <h3>5) Código sem espaços e comentários</h3>
+                    <pre id="lexerCleanCode" class="terminal-output">Aguardando análise...</pre>
+                </div>
             </div>
         </section>
     </section>

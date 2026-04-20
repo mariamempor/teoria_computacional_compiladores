@@ -4,6 +4,7 @@ const candyEmoji = { MoranGlow: '🍓', ChocoMiau: '🍫', MelCookie: '🍪' };
 let balance = 0;
 let state = 'q0';
 let activeCase = null;
+let lexerAnimationTimeout = null;
 
 const floorNames = ['Térreo', '1º andar', '2º andar', '3º andar'];
 const floorToBottom = [14, 104, 194, 284];
@@ -240,12 +241,14 @@ function resetElevator() {
 function hideAllCases() {
     document.getElementById('machine').style.display = 'none';
     document.getElementById('elevatorCase').style.display = 'none';
+    document.getElementById('lexerCase').style.display = 'none';
 }
 
 function startCase(option) {
     const menu = document.getElementById('menuScreen');
     const machine = document.getElementById('machine');
     const elevatorCase = document.getElementById('elevatorCase');
+    const lexerCase = document.getElementById('lexerCase');
 
     menu.classList.add('arcade-out');
 
@@ -267,6 +270,12 @@ function startCase(option) {
             elevatorCase.classList.add('arcade-in');
             resetElevator();
         }
+        if (option === 3) {
+            activeCase = 'lexer';
+            lexerCase.style.display = 'block';
+            lexerCase.classList.add('arcade-in');
+            resetLexer();
+        }
     }, 500);
 }
 
@@ -274,8 +283,12 @@ function goToMenu() {
     const menu = document.getElementById('menuScreen');
     const machine = document.getElementById('machine');
     const elevatorCase = document.getElementById('elevatorCase');
+    const lexerCase = document.getElementById('lexerCase');
+    let visibleCase = machine;
 
-    const visibleCase = activeCase === 'elevator' ? elevatorCase : machine;
+    if (activeCase === 'elevator') visibleCase = elevatorCase;
+    if (activeCase === 'lexer') visibleCase = lexerCase;
+
 
     visibleCase.classList.add('arcade-out');
 
@@ -287,6 +300,184 @@ function goToMenu() {
         menu.classList.add('arcade-in');
         activeCase = null;
     }, 500);
+}
+function tokenizeLine(line) {
+    const tokens = [];
+    const operators = ['==', '!=', '+', '-', '*', '/', '=', '<', '>'];
+    const delimiters = [';', ',', '(', ')', '{', '}'];
+    let i = 0;
+
+    while (i < line.length) {
+        const char = line[i];
+
+        if (/\s/.test(char)) {
+            i += 1;
+            continue;
+        }
+
+        const twoChars = line.slice(i, i + 2);
+        if (operators.includes(twoChars)) {
+            tokens.push({ lexeme: twoChars, type: 'OPERADOR' });
+            i += 2;
+            continue;
+        }
+
+        if (operators.includes(char)) {
+            tokens.push({ lexeme: char, type: 'OPERADOR' });
+            i += 1;
+            continue;
+        }
+
+        if (delimiters.includes(char)) {
+            tokens.push({ lexeme: char, type: 'DELIMITADOR' });
+            i += 1;
+            continue;
+        }
+
+        const numberMatch = line.slice(i).match(/^\d+(\.\d+)?/);
+        if (numberMatch) {
+            tokens.push({ lexeme: numberMatch[0], type: 'NUMERO' });
+            i += numberMatch[0].length;
+            continue;
+        }
+
+        const idMatch = line.slice(i).match(/^[a-zA-Z_][a-zA-Z0-9_]*/);
+        if (idMatch) {
+            const reserved = ['int', 'float', 'if', 'else', 'while', 'return'];
+            const word = idMatch[0];
+            tokens.push({
+                lexeme: word,
+                type: reserved.includes(word) ? 'PALAVRA_RESERVADA' : 'IDENTIFICADOR'
+            });
+            i += word.length;
+            continue;
+        }
+
+        tokens.push({ lexeme: char, type: 'DESCONHECIDO' });
+        i += 1;
+    }
+
+    return tokens;
+}
+
+function appendStep(message) {
+    const steps = document.getElementById('lexerSteps');
+    const li = document.createElement('li');
+    li.textContent = message;
+    steps.appendChild(li);
+    steps.scrollTop = steps.scrollHeight;
+}
+
+function renderSymbolTable(identifiersSet) {
+    const tbody = document.getElementById('symbolTableBody');
+    tbody.innerHTML = '';
+
+    if (identifiersSet.size === 0) {
+        tbody.innerHTML = '<tr><td colspan="2">Sem identificadores no momento.</td></tr>';
+        return;
+    }
+
+    identifiersSet.forEach((identifier) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${identifier}</td><td>Identificador</td>`;
+        tbody.appendChild(row);
+    });
+}
+
+function getTokenClass(type) {
+    return `tk-${type.toLowerCase()}`;
+}
+
+function resetLexer() {
+    if (lexerAnimationTimeout) {
+        clearTimeout(lexerAnimationTimeout);
+        lexerAnimationTimeout = null;
+    }
+
+    const defaultCode = `int x = 10;
+float y = x + 2.5;
+// comentário`;
+
+    const input = document.getElementById('sourceCodeInput');
+    input.value = defaultCode;
+
+    document.getElementById('lexerOriginalCode').textContent = 'Aguardando análise...';
+    document.getElementById('lexerCleanCode').textContent = 'Aguardando análise...';
+    document.getElementById('lexerTokens').innerHTML = '';
+    document.getElementById('lexerSteps').innerHTML = '<li>Digite o código e clique em Analisar.</li>';
+    renderSymbolTable(new Set());
+}
+
+function analyzeLexical() {
+    const lexerCase = document.getElementById('lexerCase');
+    const source = document.getElementById('sourceCodeInput').value;
+    const originalOutput = document.getElementById('lexerOriginalCode');
+    const cleanOutput = document.getElementById('lexerCleanCode');
+    const tokensContainer = document.getElementById('lexerTokens');
+    const steps = document.getElementById('lexerSteps');
+
+    if (!source.trim()) {
+        originalOutput.textContent = '⚠️ Digite algum código para analisar.';
+        return;
+    }
+
+    lexerCase.classList.add('lexer-running');
+    steps.innerHTML = '';
+    tokensContainer.innerHTML = '';
+
+    originalOutput.textContent = source;
+    appendStep('Código original carregado.');
+
+    const lines = source.split('\n');
+    const identifiers = new Set();
+    const allTokens = [];
+    const cleanedLines = [];
+
+    lines.forEach((line, index) => {
+        const lineWithoutComment = line.replace(/\/\/.*$/, '');
+        const compactLine = lineWithoutComment.replace(/\s+/g, ' ').trim();
+
+        if (lineWithoutComment !== line) {
+            appendStep(`Linha ${index + 1}: comentário removido.`);
+        }
+
+        if (compactLine.length > 0) {
+            cleanedLines.push(compactLine);
+            appendStep(`Linha ${index + 1}: espaços extras removidos.`);
+        }
+
+        const tokens = tokenizeLine(lineWithoutComment);
+        tokens.forEach((token) => {
+            if (token.type !== 'DESCONHECIDO') {
+                allTokens.push(token);
+            }
+
+            if (token.type === 'IDENTIFICADOR') {
+                identifiers.add(token.lexeme);
+            }
+        });
+    });
+
+    const cleanCode = cleanedLines.join('\n');
+    cleanOutput.textContent = cleanCode || '(vazio após limpeza)';
+    appendStep('Código limpo gerado.');
+
+    allTokens.forEach((token, index) => {
+        lexerAnimationTimeout = setTimeout(() => {
+            const chip = document.createElement('span');
+            chip.className = `token-chip ${getTokenClass(token.type)}`;
+            chip.textContent = `<${token.lexeme}, ${token.type}>`;
+            tokensContainer.appendChild(chip);
+        }, index * 85);
+    });
+
+    appendStep(`${allTokens.length} token(s) identificado(s).`);
+    renderSymbolTable(identifiers);
+    appendStep(`Tabela de símbolos atualizada com ${identifiers.size} identificador(es).`);
+
+    lexerAnimationTimeout = setTimeout(() => {
+        lexerCase.classList.remove('lexer-running');
+    }, (allTokens.length * 85) + 220);
 }
 
 updateDisplay();
