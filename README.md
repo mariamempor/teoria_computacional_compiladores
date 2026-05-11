@@ -153,6 +153,56 @@ Ao abrir o projeto:
 
 ---
 
+[cite_start]🎯 **Case 3 → Analisador Léxico (Scanner)** [cite: 10]
+
+[cite_start]O sistema processa sequências de comandos para identificar a estrutura atômica da linguagem, separando o "ruído" (espaços e comentários) do conteúdo semântico[cite: 20].
+
+---
+
+# ⚙️ O que ele faz?
+
+[cite_start]O analisador foi desenvolvido para processar uma gramática específica e realizar as seguintes tarefas[cite: 19, 20]:
+
+| Função | Descrição |
+|------|------|
+| **Tokenização** | [cite_start]Identifica e exibe tokens a partir de sequências de comandos[cite: 20]. |
+| **Tabela de Símbolos** | [cite_start]Organiza e mostra os símbolos identificados durante a análise[cite: 20]. |
+| **Limpeza de Código** | [cite_start]Realiza a eliminação automática de caracteres em branco[cite: 20]. |
+| **Ignorar Comentários** | [cite_start]Remove comentários que não devem ser processados pelo compilador[cite: 20]. |
+
+---
+
+## 🧠 Conceitos Implementados
+
+[cite_start]Para a construção deste case, foram aplicados conceitos fundamentais de compiladores[cite: 16]:
+
+* [cite_start]**Análise Léxica:** Processo de leitura e classificação do código fonte[cite: 16].
+* [cite_start]**Mecanismos:** Uso de ferramentas como autômatos e expressões regulares para reconhecimento de padrões[cite: 16].
+* [cite_start]**Compilação x Interpretação:** Estudo das diferentes abordagens de execução de código[cite: 16].
+* [cite_start]**Tabela de Símbolos:** Estrutura para gerenciamento de identificadores[cite: 16].
+
+---
+
+## 🎯 Funcionalidades Principais
+
+* [cite_start]✔ **Exibição em Tempo Real:** Mostra o código fonte de entrada e a análise léxica sendo realizada simultaneamente[cite: 21].
+* [cite_start]✔ **Visualização de Tokens:** Lista detalhada de cada unidade léxica identificada[cite: 20].
+* [cite_start]✔ **Interface Interativa:** Mantém a estética visual e a criatividade exigidas pelo projeto[cite: 23].
+* [cite_start]✔ **Processamento Dinâmico:** Capaz de processar pedaços de códigos e sequências de comandos[cite: 20].
+
+---
+
+# 🕹️ Como Usar
+
+## 📝 Testando o Analisador
+
+1.  Acesse o menu principal do projeto.
+2.  Selecione a opção **Analisador Léxico**.
+3.  Insira o código fonte desejado no campo de entrada.
+4.  [cite_start]Acompanhe a geração dos tokens e a atualização da Tabela de Símbolos na tela[cite: 21].
+
+---
+
 ## 🍬 Case 1
 
 1. Insira dinheiro  
