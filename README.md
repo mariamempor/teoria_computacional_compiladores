@@ -153,54 +153,84 @@ Ao abrir o projeto:
 
 ---
 
-[cite_start]🎯 **Case 3 → Analisador Léxico (Scanner)** [cite: 10]
+# 📖 Case 3 — Analisador Léxico
 
-[cite_start]O sistema processa sequências de comandos para identificar a estrutura atômica da linguagem, separando o "ruído" (espaços e comentários) do conteúdo semântico[cite: 20].
+Simula um:
+
+👉 **Processador de Tokens e Símbolos**
 
 ---
 
-# ⚙️ O que ele faz?
+## ⚙️ Regras
 
-[cite_start]O analisador foi desenvolvido para processar uma gramática específica e realizar as seguintes tarefas[cite: 19, 20]:
+- 🔠 Identifica: `Palavras-Chave | Identificadores | Operadores`
+- 🧹 Remove: `Espaços em branco | Comentários`
 
-| Função | Descrição |
+| Componente | Função |
 |------|------|
-| **Tokenização** | [cite_start]Identifica e exibe tokens a partir de sequências de comandos[cite: 20]. |
-| **Tabela de Símbolos** | [cite_start]Organiza e mostra os símbolos identificados durante a análise[cite: 20]. |
-| **Limpeza de Código** | [cite_start]Realiza a eliminação automática de caracteres em branco[cite: 20]. |
-| **Ignorar Comentários** | [cite_start]Remove comentários que não devem ser processados pelo compilador[cite: 20]. |
+| Scanner | Varredura do código fonte |
+| Tokens | Geração de unidades léxicas |
+| Tabela | Armazenamento de símbolos |
 
 ---
 
-## 🧠 Conceitos Implementados
+## 🧠 Estrutura
 
-[cite_start]Para a construção deste case, foram aplicados conceitos fundamentais de compiladores[cite: 16]:
-
-* [cite_start]**Análise Léxica:** Processo de leitura e classificação do código fonte[cite: 16].
-* [cite_start]**Mecanismos:** Uso de ferramentas como autômatos e expressões regulares para reconhecimento de padrões[cite: 16].
-* [cite_start]**Compilação x Interpretação:** Estudo das diferentes abordagens de execução de código[cite: 16].
-* [cite_start]**Tabela de Símbolos:** Estrutura para gerenciamento de identificadores[cite: 16].
+- Entrada: `Código Fonte (String)`
+- Saída: 
+  `Lista de Tokens + Tabela de Símbolos`
 
 ---
 
-## 🎯 Funcionalidades Principais
+## 🎯 Features
 
-* [cite_start]✔ **Exibição em Tempo Real:** Mostra o código fonte de entrada e a análise léxica sendo realizada simultaneamente[cite: 21].
-* [cite_start]✔ **Visualização de Tokens:** Lista detalhada de cada unidade léxica identificada[cite: 20].
-* [cite_start]✔ **Interface Interativa:** Mantém a estética visual e a criatividade exigidas pelo projeto[cite: 23].
-* [cite_start]✔ **Processamento Dinâmico:** Capaz de processar pedaços de códigos e sequências de comandos[cite: 20].
+✔ Visualização do código de entrada  
+✔ Identificação dinâmica de tokens  
+✔ Tabela de símbolos automática  
+✔ Interface no estilo Arcade  
+
+---
+
+# 🔄 Funcionamento
+
+1. Usuário insere um trecho de código  
+2. O analisador realiza a varredura (scan)  
+3. O sistema:
+   - Identifica padrões léxicos 🔍
+   - Remove caracteres desnecessários 🧹
+   - Gera a lista de tokens e símbolos 📑
+4. O resultado é exibido instantaneamente na tela  
+
+---
+
+## ⚙️ Regras de Análise
+
+- Processa **sequências de comandos**
+- Validação:
+  - ❌ Erro léxico em caracteres inválidos
+  - ✅ Reconhecimento de gramática definida
+- Suporte a comentários e espaços
+
+---
+
+## 🎯 Funcionalidades
+
+✔ Simulação de compilação realista  
+✔ Tabela de símbolos visível  
+✔ Detecção de padrões por autômatos  
+✔ Interface interativa e didática  
 
 ---
 
 # 🕹️ Como Usar
 
-## 📝 Testando o Analisador
+## 📝 No Analisador
 
-1.  Acesse o menu principal do projeto.
-2.  Selecione a opção **Analisador Léxico**.
-3.  Insira o código fonte desejado no campo de entrada.
-4.  [cite_start]Acompanhe a geração dos tokens e a atualização da Tabela de Símbolos na tela[cite: 21].
+1. Selecione o **Case 3** no menu principal  
+2. Digite ou cole o código no terminal de entrada  
+3. Clique em **Analisar** 4. Veja os tokens e a tabela sendo construídos  
 
+---
 ---
 
 ## 🍬 Case 1
@@ -218,6 +248,10 @@ Ao abrir o projeto:
 3. Veja os estados e portas funcionando  
 
 ---
+## 🧮 Case 3
+1. Escreva o código a ser analisado
+2. Clique em analisar
+3. Veja a tabela de simbolos
 
 # 📁 Estrutura do Projeto
 
