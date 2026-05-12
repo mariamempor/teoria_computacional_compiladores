@@ -39,8 +39,23 @@ Escolha seu desafio e veja os autômatos ganharem vida 🎮
 
 Este projeto é uma **simulação interativa** de autômatos:
 
-🎯 **Case 1 → AFD (Máquina de Doces)**  
-🧠 **Case 2 → PDA (Elevador com Pilha)**  
+## 🎥 Demonstrações dos Cases
+
+### 🎯 Case 1 — AFD (Máquina de Doces)
+
+![Case 1](assets/maquinaDoces.gif)
+
+---
+
+### 🧠 Case 2 — PDA (Elevador com Pilha)
+
+![Case 2](assets/elevadorCorte.gif)
+
+---
+
+### 📖 Case 3 — Analisador Léxico
+
+![Case 3](assets/analisador.gif)
 
 Tudo com interface animada, som e interação em tempo real.
 
